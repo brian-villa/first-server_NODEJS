@@ -1,9 +1,20 @@
 const http = require('http')
+const fs = require("fs")
 
 const server = http.createServer(function(request, response) {
-    console.log(request)
 
-    response.end("Hello World") //resposta ao servidor como string
+    if (request.url === '/') {
+        
+        fs.readFile('../clients/index.html', function (error, content) {
+            
+            response.end(content) //resposta ao servidor como string
+        })
+    }
+
+    if(request.url === '/teste') {
+        response.end("ok, FUNCIONOU!!!")
+    }
+
 
 
 
